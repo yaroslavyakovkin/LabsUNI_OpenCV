@@ -7,8 +7,8 @@ def fixresize(img, max):
     dim = (int(img.shape[1] * r), max)
     return cv2.resize(img, dim)
 
-i = 2
-file = f'3-{i}.PNG'
+i = 1
+file = f'Lab3/3-{i}.PNG'
 axis = 0
 flags = {'COLOR': cv2.IMREAD_COLOR, 'GRAY': cv2.IMREAD_GRAYSCALE}
 for type, flag  in flags.items():
