@@ -14,9 +14,9 @@ for k in range(3,101,2):
     #imgf = cv2.blur(img, (k, k))
     #imgf = cv2.boxFilter(img, -1, (k,k))
     #imgf = cv2.medianBlur(img, k) #3-2(15) 3-1(35)
-    imgf = cv2.GaussianBlur(img, (k, k), k*3, k*3)
+    #imgf = cv2.GaussianBlur(img, (k, k), k*3, k*3)__
     #imgf = cv2.bilateralFilter(img, k, k*2 , k*2) #3-1
-    #imgf = cv2.filter2D(img, -1, np.ones((k,k),np.float32)/k**2) #3-2(20,50) 3-1(50,50)
+    imgf = cv2.filter2D(img, -1, np.ones((k,k),np.float32)/k**2) #3-2(20,50) 3-1(50,50)
     
     if img.shape[0] > img.shape[1]:axis=1
     img_combine = np.concatenate((img, imgf), axis)
