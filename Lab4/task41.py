@@ -14,28 +14,30 @@ def morph(image, method, kernel, iterations):
         image = new
     return image
 
-methods = {'close':cv2.MORPH_CLOSE, 'open':cv2.MORPH_OPEN}
-method = input('''1.Замыкание
+while True:
+    methods = {'close':cv2.MORPH_CLOSE, 'open':cv2.MORPH_OPEN}
+    method = input('''1.Замыкание
 2.Размыкание
 Номер требуемой операции: ''')
-if method == '1': method = 'close'  
-elif method == '2': method = 'open'
+    if method == '1': method = 'close'; break
+    elif method == '2': method = 'open'; break
 
 f = cv2.FONT_ITALIC
-img = 255 - cv2.imread("Lab4\\4-1.jpg")   
 i = 5
-k = np.ones((2, 2))
+b = (3, 3)
+k = np.ones(b)
 c = (255, 255, 255)
-img_new = morph(img, method, k, i)
-img_new2 = cv2.morphologyEx(img, methods[method], k, None, None, i)
-img_diff = cv2.absdiff(img_new, img_new2)
-img_diff = cv2.dilate(img_diff, k)
+for i in range(1,i+1):
+    img = 255 - cv2.imread("Lab4\\4-1.jpg")   
+    img_new = morph(img, method, k, i)
+    img_new2 = cv2.morphologyEx(img, methods[method], k, None, None, i)
+    img_diff = cv2.absdiff(img_new, img_new2)
 
-img_combine = 255 - np.concatenate((cv2.putText(img, 'original', (30,30), f, 1,c,1),
-                              cv2.putText(img_new, 'my func', (30,30), f, 1,c,1),
-                              cv2.putText(img_new2, 'cv2 func', (30,30), f, 1,c,1),
-                              cv2.putText(img_diff, 'difference', (30,30), f, 1,c,1)),1)
+    img_combine = 255 - np.concatenate((cv2.putText(img, 'original', (30,30), f, 1,c,1),
+                                cv2.putText(img_new, 'my func', (30,30), f, 1,c,1),
+                                cv2.putText(img_new2, 'cv2 func', (30,30), f, 1,c,1),
+                                cv2.putText(img_diff, 'difference', (30,30), f, 1,c,1)),1)
 
-cv2.imshow(f"{method}", img_combine)
-if cv2.waitKey() == ord("s"):
-    cv2.imwrite(f"Lab4\\morph\\{method}-{i}_4-1.jpg", img_combine)
+    cv2.imshow(f"{method}", img_combine)
+    cv2.waitKey()# == ord("s"):
+    cv2.imwrite(f'Lab4\\mrph\\{method}-{b}-{i}_4-1.jpg', img_combine)
