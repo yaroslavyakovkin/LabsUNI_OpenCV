@@ -1,7 +1,6 @@
 import cv2, math
 import numpy as np
-
-def draw_line(rho, theta, img, color=(255, 255, 255), thickness=15):
+def draw_line(rho, theta, img, color=(255, 255, 255), thickness=5):
     cos_t = math.cos(theta)
     sin_t = math.sin(theta)
     x0 = cos_t * rho
@@ -14,7 +13,7 @@ def draw_line(rho, theta, img, color=(255, 255, 255), thickness=15):
 edit = cv2.imread('Lab7\\7_1.jpg')
 img=cv2.cvtColor(edit,cv2.COLOR_BGR2GRAY)
 _,img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-lines = cv2.HoughLines(img, 1, np.pi/180, 500)
+lines = cv2.HoughLines(img, 1.5, np.pi/180, img.shape[0])
 
 for line in lines:
     rho, theta = line[0]
