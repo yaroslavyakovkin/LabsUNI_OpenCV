@@ -13,7 +13,7 @@ def draw_line(rho, theta, img, color=(255, 255, 255), thickness=5):
 edit = cv2.imread('Lab7\\7_1.jpg')
 img=cv2.cvtColor(edit,cv2.COLOR_BGR2GRAY)
 _,img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-lines = cv2.HoughLines(img, 1.5, np.pi/180, img.shape[0])
+lines = cv2.HoughLines(img, 1.51, np.pi/180, int(img.shape[0]))
 
 for line in lines:
     rho, theta = line[0]
